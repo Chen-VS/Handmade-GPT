@@ -1,8 +1,9 @@
 import math
 import torch
 from torch.utils.data import DataLoader, random_split
+
 from my_data import CharTokenizer, CharDataset
-from MiniGPT import MiniGPT, GPTConfig
+from minigpt import MiniGPT, GPTConfig
 
 
 def train_one_epoch(dataloader, model, optimizer, device, grad_clip=1.0):
@@ -50,7 +51,7 @@ def evaluate(dataloader, model, device):
 
 def main():
     # 你可以先换成自己的文本文件
-    with open("D:/input.txt", "r", encoding="utf-8") as f:
+    with open("input.txt", "r", encoding="utf-8") as f:
         text = f.read()
 
     block_size = 64
@@ -97,7 +98,7 @@ def main():
         )
 
         # 每轮都生成一点看看效果
-        prompt = "人工智能"
+        prompt = "你好"
         # 若 prompt 中有训练集未出现字符，会报错，所以开始建议用训练文本里一定存在的字符
         try:
             start_ids = torch.tensor([tokenizer.encode(prompt)], dtype=torch.long, device=device)
@@ -113,7 +114,7 @@ def main():
 
         text_out = tokenizer.decode(out[0].tolist())
         print("sample:")
-        print(repr(text_out))
+        print(text_out)
         print("-" * 60)
 
         # 保存 checkpoint
