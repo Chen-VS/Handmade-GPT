@@ -1,4 +1,4 @@
-from Attention import CausalSelfAttention
+from Attention import CausalMultiHeadAttention
 from Attention import GPTBlock
 from torch import nn
 import torch
