@@ -3,7 +3,7 @@ import torch
 from torch.utils.data import DataLoader, random_split
 
 from my_data import CharTokenizer, CharDataset
-from minigpt import MiniGPT, GPTConfig
+from MIniGPT import MiniGPT, GPTConfig
 
 
 def train_one_epoch(dataloader, model, optimizer, device, grad_clip=1.0):
